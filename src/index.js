@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -30,9 +31,15 @@ class App extends Component {
   }
 
   render() {
+    // This just throttles the function calls - once per 300 ms.
+    // Seems kinda hokey, but actually give s anice experience that sort of
+    // matches Google Instant Search.  We don't want to hit the API immediately for every
+    // character typed.
+    const videoSearch = _.debounce((term) => { this.videoSearch(term); }, 300);
+
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
       </div>
