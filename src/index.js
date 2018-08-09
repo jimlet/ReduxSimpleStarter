@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import Secrets from './secrets';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
-
-// All caps for true constants.
-const API_KEY = 'AIzaSyBj2NE0A-4_4K8qb-e4qQibjTcWIh_ROVE';
 
 // Create a new component.
 // This component should produce some HTML.
@@ -23,7 +21,7 @@ class App extends Component {
   }
 
   videoSearch(term) {
-    YTSearch({ key: API_KEY, term }, (videos) => {
+    YTSearch({ key: Secrets.GOOGLE_API_KEY, term }, (videos) => {
       this.setState({
         videos,
         selectedVideo: videos[0],
