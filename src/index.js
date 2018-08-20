@@ -32,7 +32,7 @@ class App extends Component {
 
   render() {
     // This just throttles the function calls - once per 300 ms.
-    // Seems kinda hokey, but actually give s anice experience that sort of
+    // Seems kinda hokey, but actually gives a nice experience that sort of
     // matches Google Instant Search.  We don't want to hit the API immediately for every
     // character typed.
     const videoSearch = _.debounce((term) => { this.videoSearch(term); }, 300);
